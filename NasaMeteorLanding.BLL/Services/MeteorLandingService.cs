@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace NasaMeteorLanding.BLL.Services
 {
-    class MeteorLandingService
+    public class MeteorLandingService
     {
         private MeteorLandingRepository repo = new MeteorLandingRepository();
 
@@ -23,35 +23,28 @@ namespace NasaMeteorLanding.BLL.Services
             {
                 meteors = await repo.GetAll();
             }
-            else if (year != null)
+            else if (year != null && mass == null)
             {
                 meteors = await repo.GetAll(year.Value);
             }
-            else if (mass != null)
+            else if (year == null && mass != null)
             {
                 meteors = await repo.GetAll(mass.Value);
             }
             else
             {
                 meteors = await repo.GetAll(year.Value, mass.Value);
-
-                if (meteors == null)
-                {
-                    var meteorsByMass = await repo.GetAll(mass.Value);
-
-                    //should attach this message too response or do this logic at UI
-                    //throw new ValidationException("Meteors with that mass not found, jumping to first-year where there is a mass that fits the criteria", "");
-
-                    var meteor = meteorsByMass.OrderBy(item => item.Date.Year).FirstOrDefault();
-                    meteors = new List<MeteorLanding>() { meteor };
-                }
             }
 
 
             if (meteors == null)
                 throw new ValidationException("Meteors not found", "");
 
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<MeteorLanding, MeteorLandingDTO>()).CreateMapper();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<MeteorLanding, MeteorLandingDTO>()
+                .ForMember("Year", opt => opt.MapFrom(src => src.Date.Year))
+                .ForMember("Longitude", opt => opt.MapFrom(src => src.Reclong))
+                .ForMember("Latitude", opt => opt.MapFrom(src => src.Reclat))
+                ).CreateMapper();
             return mapper.Map<IEnumerable<MeteorLanding>, List<MeteorLandingDTO>>(meteors.ToList());
         }
     }

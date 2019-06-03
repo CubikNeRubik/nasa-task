@@ -21,7 +21,7 @@ namespace NasaMeteorLanding.DAL.DataSources
 
         private MeteorLandingDataSource()
         {
-            Data = Task.Run(GetFreshData);
+            Data = Task.Run(() => new List<MeteorLanding>() as IEnumerable<MeteorLanding>);
             // Fetch data each 5 minutes
             TimerCallback callback = new TimerCallback(UpdateData);
             Timer timer = new Timer(callback, null, 0, 5 * 60 * 1000);

@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NasaMeteorLanding.DAL\NasaMeteorLanding.DAL.csproj" />
+    <ProjectReference Include="..\NasaMeteorLanding.BLL\NasaMeteorLanding.BLL.csproj" />
   </ItemGroup>
 
 </Project>

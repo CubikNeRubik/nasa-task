@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Nasa_meteor_landing.Global" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="NasaMeteorLanding.Global" Language="C#" %>

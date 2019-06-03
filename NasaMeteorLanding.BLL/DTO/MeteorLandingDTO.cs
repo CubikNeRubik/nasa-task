@@ -12,10 +12,8 @@ namespace NasaMeteorLanding.BLL.DTO
         public string Recclass { get; set; }
         public double Mass { get; set; }
         public string Fall { get; set; }
-
-        public DateTime Date { get; set; }
-        public double Reclat { get; set; }
-        public double Reclong { get; set; }
-        public GeolocationDTO Geolocation { get; set; }
+        public int Year { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
     }
 }

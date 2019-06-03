@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Optimization;
 using System.Web.UI;
 
-namespace Nasa_meteor_landing
+namespace NasaMeteorLanding
 {
     public class BundleConfig
     {

@@ -31,13 +31,13 @@ namespace NasaMeteorLanding.DAL.Repositories
         public async Task<IEnumerable<MeteorLanding>> GetAll(double mass)
         {
             var data = await dataSource.Data;
-            return data.Where(item => item.Mass == mass);
+            return data.Where(item => item.Mass >= mass);
         }
 
         public async Task<IEnumerable<MeteorLanding>> GetAll(int year, double mass)
         {
             var data = await dataSource.Data;
-            return data.Where(item => item.Date.Year == year && item.Mass == mass);
+            return data.Where(item => item.Date.Year == year && item.Mass >= mass);
         }
     }
 }
